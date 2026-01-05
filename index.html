@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A simple and intuitive Notes Management App">
+    <title>Notes Management App</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Prevent flash of unstyled content */
+        :root {
+            color-scheme: light dark;
+        }
+        body {
+            opacity: 0;
+            transition: opacity 0.3s ease-in;
+        }
+        body.loaded {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- App Header with Theme Toggle -->
+        <header class="app-header">
+            <h1 class="app-title">📝 Notes App</h1>
+            <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode">
+                <span class="theme-icon">🌓</span>
+            </button>
+        </header>
+        
+        <!-- Main Navigation -->
+        <nav class="main-navigation" aria-label="Main Navigation">
+            <div class="nav-group">
+                <button id="createNoteBtn" class="btn btn-primary" aria-label="Create new note">
+                    <span class="btn-icon">+</span>
+                    <span class="btn-text">New Note</span>
+                </button>
+                <button id="viewNotesBtn" class="btn btn-secondary" aria-label="View all notes">
+                    <span class="btn-icon">📋</span>
+                    <span class="btn-text">View Notes</span>
+                </button>
+                <button id="exportNotesBtn" class="btn btn-export" aria-label="Export notes">
+                    <span class="btn-icon">📤</span>
+                    <span class="btn-text">Export</span>
+                </button>
+            </div>
+            
+            <div class="search-container" role="search">
+                <input 
+                    type="search" 
+                    id="searchNotes" 
+                    class="search-input" 
+                    placeholder="Search notes..." 
+                    aria-label="Search notes"
+                >
+            </div>
+        </nav>
+        
+        <!-- Main Content Area -->
+        <main id="mainContent" class="content-area" role="main">
+            <!-- Dynamic content will be loaded here by JavaScript -->
+            <div class="welcome-message">
+                <h2>Welcome to Notes App</h2>
+                <p>Get started by creating a new note or viewing existing ones.</p>
+                <div class="welcome-illustration" aria-hidden="true">
+                    <div class="note-paper"></div>
+                    <div class="pencil" aria-hidden="true">✏️</div>
+                </div>
+            </div>
+        </main>
+        
+        <!-- App Footer -->
+        <footer class="app-footer">
+            <p>© <span id="currentYear"></span> Notes Management App</p>
+            <p class="app-version">v1.0.0</p>
+        </footer>
+    </div>
+
+    <!-- Hidden elements for accessibility -->
+    <div id="liveRegion" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+    
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+    <script>
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        // Add loaded class when DOM is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.classList.add('loaded');
+        });
+    </script>
+</body>
+</html>
